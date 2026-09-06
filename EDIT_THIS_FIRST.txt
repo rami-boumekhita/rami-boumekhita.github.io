@@ -1,0 +1,53 @@
+RAMI — HOW TO EDIT THIS PORTFOLIO
+=================================
+
+1) MOST CHANGES
+Open: content.js
+
+You can edit:
+- Email / phone / WhatsApp
+- LinkedIn / GitHub
+- Experience
+- Projects
+- Skills
+- Education
+- Certificates
+- Languages
+- Extra-professional experience
+
+2) REPLACE YOUR CV
+Replace:
+assets/docs/Rami_Boumekhita_CV.pdf
+
+Keep the same filename and the Download CV button will continue to work.
+
+3) ADD A NEW CERTIFICATE
+In content.js, copy one object from the "certifications" array and change:
+- title
+- provider
+- date
+- image
+- file
+- verify (leave "" if no verification link yet)
+- category
+
+Put the new certificate image/PDF inside:
+assets/certificates/
+
+4) CONTACT FORM
+The website uses FormSubmit to send form messages to:
+rami.boumekhita@gmail.com
+
+IMPORTANT: after the first real form submission on the published website,
+FormSubmit may send a one-time activation email to Rami. Open that email and
+confirm the form. After activation, future messages are delivered normally.
+
+When you open index.html locally on your computer, the form falls back to your
+email application instead, so you can still test it without hosting.
+
+5) OPEN THE WEBSITE
+Double-click index.html
+
+6) PUBLISH
+Upload the whole folder to Netlify, Vercel, GitHub Pages or any static host.
+Do not upload only index.html — keep the assets folder, app.js, content.js and styles.css.
