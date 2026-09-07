@@ -51,3 +51,9 @@ Double-click index.html
 6) PUBLISH
 Upload the whole folder to Netlify, Vercel, GitHub Pages or any static host.
 Do not upload only index.html — keep the assets folder, app.js, content.js and styles.css.
+
+
+ANALYTICS
+---------
+Google Analytics Measurement ID is in index.html: G-E8QPH40DXV
+See ANALYTICS_GUIDE.md for event names and UTM links.

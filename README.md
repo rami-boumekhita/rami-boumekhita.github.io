@@ -74,3 +74,12 @@ For GitHub Pages, put the files in a repository, enable **Settings → Pages**, 
 ## Privacy
 
 Industrial case studies intentionally generalize client-sensitive implementation details. Before adding future screenshots from TIA Portal, WCS/WMS, SCADA or customer sites, verify that they contain no confidential IP addresses, device names, source code, production data or client-only architecture.
+
+
+## Analytics (V2.3)
+Google Analytics 4 is configured with Measurement ID `G-E8QPH40DXV`.
+Custom events include CV downloads, contact actions, LinkedIn/GitHub/WhatsApp clicks, project views, certificate interactions, company/education link clicks, section views and successful contact-form redirects.
+
+A small analytics consent banner is included. Advertising features are disabled in the Google tag configuration.
+
+See `ANALYTICS_GUIDE.md` for the dashboard locations and UTM links to use in LinkedIn, your CV and your email signature.

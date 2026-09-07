@@ -9,6 +9,82 @@
   const t = (key) => PORTFOLIO.i18n[state.lang][key] ?? key;
   const txt = (obj) => obj?.[state.lang] ?? obj?.en ?? '';
 
+  const ANALYTICS_CONSENT_KEY = 'portfolioAnalyticsConsent';
+
+  function trackEvent(name, params = {}) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', name, {
+      ...params,
+      language: state.lang,
+      page_path: window.location.pathname,
+      transport_type: 'beacon'
+    });
+  }
+
+  function setupAnalyticsConsent() {
+    const banner = $('#analyticsConsent');
+    if (!banner) return;
+
+    const saved = localStorage.getItem(ANALYTICS_CONSENT_KEY);
+    banner.hidden = Boolean(saved);
+
+    const applyConsent = (value) => {
+      localStorage.setItem(ANALYTICS_CONSENT_KEY, value);
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: value === 'granted' ? 'granted' : 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied'
+        });
+      }
+      banner.hidden = true;
+      if (value === 'granted') trackEvent('analytics_consent', { consent: 'granted' });
+    };
+
+    $('#analyticsAccept')?.addEventListener('click', () => applyConsent('granted'));
+    $('#analyticsDecline')?.addEventListener('click', () => applyConsent('denied'));
+  }
+
+  function setupAnalyticsEvents() {
+    document.addEventListener('click', (event) => {
+      const target = event.target.closest('[data-analytics-event]');
+      if (!target) return;
+      trackEvent(target.dataset.analyticsEvent, {
+        location: target.dataset.analyticsLocation || '',
+        label: target.dataset.analyticsLabel || target.textContent.trim().slice(0, 120),
+        destination: target.href || ''
+      });
+    });
+
+    const seenSections = new Set();
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.45) return;
+        const id = entry.target.id || entry.target.className || 'section';
+        if (seenSections.has(id)) return;
+        seenSections.add(id);
+        trackEvent('section_view', { section: id });
+      });
+    }, { threshold: [0.45] });
+
+    $$('main section[id]').forEach(section => sectionObserver.observe(section));
+
+    const seenProjects = new Set();
+    const projectObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || entry.intersectionRatio < 0.6) return;
+        const name = entry.target.dataset.projectName;
+        if (!name || seenProjects.has(name)) return;
+        seenProjects.add(name);
+        trackEvent('project_view', { project: name });
+      });
+    }, { threshold: [0.6] });
+
+    $$('.project-card[data-project-name]').forEach(card => projectObserver.observe(card));
+  }
+
+
   function setupTheme() {
     document.body.classList.toggle('light', state.theme === 'light');
     $('#themeToggle').setAttribute('aria-label', state.theme === 'light' ? 'Use dark theme' : 'Use light theme');
@@ -55,14 +131,14 @@
 
       const companyNames = companies.map(company =>
         company.url
-          ? `<a class="company-link" href="${company.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${company.name} official website">${company.name}<span class="external-mark" aria-hidden="true">↗</span></a>`
+          ? `<a class="company-link" data-analytics-event="company_click" data-analytics-location="experience" data-analytics-label="${company.name}" href="${company.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${company.name} official website">${company.name}<span class="external-mark" aria-hidden="true">↗</span></a>`
           : `<span>${company.name}</span>`
       ).join('<span class="company-separator"> / </span>');
 
       const logos = exp.logos.map(logo => {
         const tile = `<div class="logo-tile"><img src="${logo.src}" alt="${logo.alt}" loading="lazy"></div>`;
         return logo.url
-          ? `<a class="logo-tile-link" href="${logo.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${logo.alt} official website">${tile}</a>`
+          ? `<a class="logo-tile-link" data-analytics-event="company_click" data-analytics-location="experience_logo" data-analytics-label="${logo.alt}" href="${logo.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${logo.alt} official website">${tile}</a>`
           : tile;
       }).join('');
 
@@ -148,7 +224,7 @@
 
   function renderProjects() {
     $('#projectGrid').innerHTML = PORTFOLIO.projects.map((p, i) => `
-      <article class="project-card reveal" style="--delay:${(i % 2) * 70}ms">
+      <article class="project-card reveal" data-project-name="${txt(p.title)}" style="--delay:${(i % 2) * 70}ms">
         <div class="project-visual">${projectVisual(p.visual)}</div>
         <div class="project-body">
           <div class="project-topline"><span class="project-num">${p.n}</span><span>${txt(p.type)}</span></div>
@@ -179,10 +255,10 @@
     $('#educationList').innerHTML = PORTFOLIO.education.map((ed, i) => {
       const logo = `<div class="school-logo"><img src="${ed.logo}" alt="${ed.school}" loading="lazy"></div>`;
       const logoMarkup = ed.url
-        ? `<a class="school-logo-link" href="${ed.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${ed.school} official website">${logo}</a>`
+        ? `<a class="school-logo-link" data-analytics-event="education_click" data-analytics-location="education_logo" data-analytics-label="${ed.school}" href="${ed.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${ed.school} official website">${logo}</a>`
         : logo;
       const schoolMarkup = ed.url
-        ? `<a class="school-link" href="${ed.url}" target="_blank" rel="noopener noreferrer">${ed.school}<span class="external-mark" aria-hidden="true">↗</span></a>`
+        ? `<a class="school-link" data-analytics-event="education_click" data-analytics-location="education" data-analytics-label="${ed.school}" href="${ed.url}" target="_blank" rel="noopener noreferrer">${ed.school}<span class="external-mark" aria-hidden="true">↗</span></a>`
         : `<strong>${ed.school}</strong>`;
 
       return `
@@ -208,7 +284,7 @@
   function renderCertificates() {
     $('#certificateGrid').innerHTML = PORTFOLIO.certifications.map((c, i) => `
       <article class="certificate-card reveal" style="--delay:${(i % 3) * 45}ms">
-        <a class="certificate-image" href="${c.file}" target="_blank" rel="noopener" aria-label="${t('certificates.view')}: ${c.title}">
+        <a class="certificate-image" data-analytics-event="certificate_view" data-analytics-label="${c.title}" href="${c.file}" target="_blank" rel="noopener" aria-label="${t('certificates.view')}: ${c.title}">
           <img src="${c.image}" alt="Certificate: ${c.title}" loading="lazy">
           <span class="certificate-category">${c.category}</span>
         </a>
@@ -217,8 +293,8 @@
           <h3>${c.title}</h3>
           <div class="certificate-date">${c.date}</div>
           <div class="certificate-actions">
-            <a class="mini-btn primary" href="${c.file}" target="_blank" rel="noopener">${t('certificates.view')} ↗</a>
-            ${c.verify ? `<a class="mini-btn" href="${c.verify}" target="_blank" rel="noopener">${t('certificates.verify')} ↗</a>` : ''}
+            <a class="mini-btn primary" data-analytics-event="certificate_view" data-analytics-label="${c.title}" href="${c.file}" target="_blank" rel="noopener">${t('certificates.view')} ↗</a>
+            ${c.verify ? `<a class="mini-btn" data-analytics-event="certificate_verify" data-analytics-label="${c.title}" href="${c.verify}" target="_blank" rel="noopener">${t('certificates.verify')} ↗</a>` : ''}
           </div>
         </div>
       </article>
@@ -229,10 +305,10 @@
     $('#communityGrid').innerHTML = PORTFOLIO.community.map((item, i) => {
       const logo = `<div class="community-logo"><img src="${item.logo}" alt="${item.organization}" loading="lazy"></div>`;
       const logoMarkup = item.url
-        ? `<a class="community-logo-link" href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${item.organization} official website">${logo}</a>`
+        ? `<a class="community-logo-link" data-analytics-event="organization_click" data-analytics-location="community_logo" data-analytics-label="${item.organization}" href="${item.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${item.organization} official website">${logo}</a>`
         : logo;
       const orgMarkup = item.url
-        ? `<a class="community-org community-org-link" href="${item.url}" target="_blank" rel="noopener noreferrer">${item.organization}<span class="external-mark" aria-hidden="true">↗</span></a>`
+        ? `<a class="community-org community-org-link" data-analytics-event="organization_click" data-analytics-location="community" data-analytics-label="${item.organization}" href="${item.url}" target="_blank" rel="noopener noreferrer">${item.organization}<span class="external-mark" aria-hidden="true">↗</span></a>`
         : `<div class="community-org">${item.organization}</div>`;
 
       return `
@@ -304,8 +380,13 @@
     const form = $('#contactForm');
     if (!form) return;
 
+    form.addEventListener('submit', () => {
+      trackEvent('contact_submit', { method: 'contact_form' });
+    });
+
     const params = new URLSearchParams(window.location.search);
     if (params.get('sent') === '1') {
+      trackEvent('contact_success', { method: 'contact_form' });
       const success = $('#formSuccess');
       if (success) {
         success.hidden = false;
@@ -340,11 +421,13 @@
       state.theme = state.theme === 'dark' ? 'light' : 'dark';
       localStorage.setItem('portfolioTheme', state.theme);
       setupTheme();
+      trackEvent('theme_change', { theme: state.theme });
     });
     $('#langToggle').addEventListener('click', () => {
       state.lang = state.lang === 'en' ? 'fr' : 'en';
       localStorage.setItem('portfolioLang', state.lang);
       applyI18n();
+      trackEvent('language_change', { selected_language: state.lang });
     });
   }
 
@@ -355,6 +438,8 @@
     setupControls();
     setupContactForm();
     applyI18n();
+    setupAnalyticsConsent();
+    setupAnalyticsEvents();
     $('#year').textContent = new Date().getFullYear();
   }
 

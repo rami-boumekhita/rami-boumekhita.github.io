@@ -15,7 +15,7 @@ const PORTFOLIO = {
     whatsappRaw: "33602563927",
     location: "Lyon, France",
     linkedin: "https://www.linkedin.com/in/rami-boumekhita",
-    github: "https://github.com/Rami-R/Rami-R",
+    github: "https://github.com/rami-boumekhita",
     cv: "assets/docs/Rami_Boumekhita_CV.pdf"
   },
 
@@ -49,7 +49,7 @@ const PORTFOLIO = {
       "hero.location": "Based in Lyon, France",
 
       "about.kicker": "PROFILE",
-      "about.title": "PLC, control, SCADA and intralogistics from field devices to supervision systems.",
+      "about.title": "PLC, control, SCADA and intralogistics — from field devices to supervision systems.",
       "about.body": "I am an Automation & Control Engineer with hands-on experience across PLC programming, industrial control, SCADA supervision, WCS/WMS integration, commissioning and troubleshooting. I work with Siemens S7 systems and TIA Portal, Structured Text, industrial networks, drives, sensors and machine-level diagnostics, while also understanding the supervision and data layers above the PLC. My background spans automated intralogistics, battery manufacturing, automotive, robotics and control engineering.",
 
       "experience.kicker": "EXPERIENCE",
@@ -111,7 +111,10 @@ const PORTFOLIO = {
       "contact.send": "Send message",
       "contact.formNote": "Your message will be sent to my professional email.",
 
-      "footer.text": "Automation & Control Engineer • Lyon, France"
+      "footer.text": "Automation & Control Engineer • Lyon, France",
+      "analytics.message": "I use analytics to understand portfolio visits and improve the site. Advertising features are disabled.",
+      "analytics.decline": "Decline",
+      "analytics.accept": "Allow analytics"
     },
 
     fr: {
@@ -136,7 +139,7 @@ const PORTFOLIO = {
       "hero.location": "Basé à Lyon, France",
 
       "about.kicker": "PROFIL",
-      "about.title": "PLC, contrôle-commande, SCADA et intralogistique du terrain jusqu’aux systèmes de supervision.",
+      "about.title": "PLC, contrôle-commande, SCADA et intralogistique — du terrain jusqu’aux systèmes de supervision.",
       "about.body": "Je suis ingénieur en automatisme et contrôle-commande avec une expérience pratique en programmation PLC, contrôle industriel, supervision SCADA, intégration WCS/WMS, mise en service et diagnostic. Je travaille notamment sur les systèmes Siemens S7 sous TIA Portal, le Structured Text, les réseaux industriels, les variateurs, les capteurs et le diagnostic machine, tout en maîtrisant les couches de supervision et de données au-dessus du PLC. Mon parcours couvre l’intralogistique automatisée, l’industrie des batteries, l’automobile, la robotique et le contrôle-commande.",
 
       "experience.kicker": "EXPÉRIENCE",
@@ -198,7 +201,10 @@ const PORTFOLIO = {
       "contact.send": "Envoyer le message",
       "contact.formNote": "Votre message sera envoyé à mon adresse email professionnelle.",
 
-      "footer.text": "Ingénieur Automatisme & Contrôle-Commande • Lyon, France"
+      "footer.text": "Ingénieur Automatisme & Contrôle-Commande • Lyon, France",
+      "analytics.message": "J’utilise des statistiques de visite pour comprendre l’usage du portfolio et améliorer le site. Les fonctions publicitaires sont désactivées.",
+      "analytics.decline": "Refuser",
+      "analytics.accept": "Autoriser les statistiques"
     }
   },
 

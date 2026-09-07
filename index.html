@@ -7,24 +7,51 @@
   <meta name="author" content="Rami Boumekhita" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#07111d" />
+  <link rel="canonical" href="https://rami-boumekhita.github.io/" />
 
   <!-- Social / recruiter preview -->
   <meta property="og:title" content="Rami Boumekhita | Automation & Control Engineer" />
   <meta property="og:description" content="Siemens PLC • TIA Portal • SCADA • WCS/WMS • Controls • Commissioning • Industrial Troubleshooting" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Rami Boumekhita — Automation Portfolio" />
+  <meta property="og:url" content="https://rami-boumekhita.github.io/" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
-  <meta property="og:image" content="assets/rami-photo.jpg" />
+  <meta property="og:image" content="https://rami-boumekhita.github.io/assets/rami-photo.jpg" />
   <meta property="og:image:alt" content="Rami Boumekhita, Automation & Control Engineer" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Rami Boumekhita | Automation & Control Engineer" />
   <meta name="twitter:description" content="Siemens PLC • TIA Portal • SCADA • WCS/WMS • Controls • Commissioning" />
-  <meta name="twitter:image" content="assets/rami-photo.jpg" />
+  <meta name="twitter:image" content="https://rami-boumekhita.github.io/assets/rami-photo.jpg" />
 
   <title>Rami Boumekhita | Automation & Control Engineer</title>
   <link rel="icon" href="assets/rb-logo.svg" type="image/svg+xml" />
+
+  <!-- Google Analytics 4 — privacy-aware Consent Mode -->
+  <script>
+    window.PORTFOLIO_ANALYTICS = {
+      measurementId: 'G-E8QPH40DXV'
+    };
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    const savedAnalyticsConsent = localStorage.getItem('portfolioAnalyticsConsent');
+    gtag('consent', 'default', {
+      analytics_storage: savedAnalyticsConsent === 'granted' ? 'granted' : 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+
+    gtag('js', new Date());
+    gtag('config', window.PORTFOLIO_ANALYTICS.measurementId, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-E8QPH40DXV"></script>
 
   <script type="application/ld+json">
   {
@@ -33,7 +60,7 @@
     "name": "Rami Boumekhita",
     "jobTitle": "Automation & Control Engineer",
     "description": "Automation & Control Engineer with 3+ years of experience across Siemens PLC programming, TIA Portal, SCADA, WCS/WMS, controls, commissioning and industrial troubleshooting.",
-    "image": "assets/rami-photo.jpg",
+    "image": "https://rami-boumekhita.github.io/assets/rami-photo.jpg",
     "email": "mailto:rami.boumekhita@gmail.com",
     "telephone": "+33 6 02 56 39 27",
     "address": {
@@ -43,7 +70,7 @@
     },
     "sameAs": [
       "https://www.linkedin.com/in/rami-boumekhita",
-      "https://github.com/Rami-R/Rami-R"
+      "https://github.com/rami-boumekhita"
     ],
     "knowsAbout": [
       "Industrial Automation",
@@ -126,7 +153,7 @@
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects"><span data-i18n="hero.ctaProjects">View engineering work</span><span aria-hidden="true">↗</span></a>
-            <a class="btn btn-secondary" id="cvButton" href="assets/docs/Rami_Boumekhita_CV.pdf" download><span data-i18n="hero.ctaCv">Download CV</span><span aria-hidden="true">↓</span></a>
+            <a class="btn btn-secondary" id="cvButton" data-analytics-event="cv_download" data-analytics-location="hero" href="assets/docs/Rami_Boumekhita_CV.pdf" download><span data-i18n="hero.ctaCv">Download CV</span><span aria-hidden="true">↓</span></a>
           </div>
 
           <div class="availability-row">
@@ -151,9 +178,9 @@
           </div>
 
           <div class="instant-contact" aria-label="Quick contact links">
-            <a id="heroEmail" href="mailto:rami.boumekhita@gmail.com"><span class="contact-icon">@</span><span><small>Email</small><strong>rami.boumekhita@gmail.com</strong></span></a>
-            <a id="heroPhone" href="tel:+33602563927"><span class="contact-icon">☎</span><span><small>Phone</small><strong>+33 6 02 56 39 27</strong></span></a>
-            <a id="heroWhatsapp" href="https://wa.me/33602563927" target="_blank" rel="noopener"><span class="contact-icon">W</span><span><small>WhatsApp</small><strong>Message directly</strong></span></a>
+            <a id="heroEmail" data-analytics-event="email_click" data-analytics-location="hero" href="mailto:rami.boumekhita@gmail.com"><span class="contact-icon">@</span><span><small>Email</small><strong>rami.boumekhita@gmail.com</strong></span></a>
+            <a id="heroPhone" data-analytics-event="phone_click" data-analytics-location="hero" href="tel:+33602563927"><span class="contact-icon">☎</span><span><small>Phone</small><strong>+33 6 02 56 39 27</strong></span></a>
+            <a id="heroWhatsapp" data-analytics-event="whatsapp_click" data-analytics-location="hero" href="https://wa.me/33602563927" target="_blank" rel="noopener"><span class="contact-icon">W</span><span><small>WhatsApp</small><strong>Message directly</strong></span></a>
           </div>
         </div>
       </div>
@@ -226,7 +253,7 @@
                 <span class="micro-label" data-i18n="achievement.rank">National Grandes Écoles entrance exam</span>
                 <strong class="achievement-value" data-i18n="achievement.rankText">Ranked 55th out of 1,961 candidates</strong>
                 <span class="achievement-meta" data-i18n="achievement.rankMeta"></span>
-                <a class="text-link" href="assets/docs/grandes-ecoles-ranking.jpg" target="_blank" rel="noopener"><span data-i18n="achievement.rankButton">View ranking certificate</span> ↗</a>
+                <a class="text-link" data-analytics-event="achievement_view" data-analytics-label="Grandes Ecoles ranking" href="assets/docs/grandes-ecoles-ranking.jpg" target="_blank" rel="noopener"><span data-i18n="achievement.rankButton">View ranking certificate</span> ↗</a>
               </div>
             </article>
 
@@ -239,7 +266,7 @@
                 <span class="micro-label" data-i18n="achievement.toeic">TOEIC English score</span>
                 <strong class="achievement-value" data-i18n="achievement.toeicText">875 / 990</strong>
                 <span class="achievement-meta" data-i18n="achievement.toeicMeta"></span>
-                <a class="text-link" href="assets/docs/TOEIC_Rami_Boumekhita.pdf" target="_blank" rel="noopener"><span data-i18n="achievement.toeicButton">View TOEIC report</span> ↗</a>
+                <a class="text-link" data-analytics-event="achievement_view" data-analytics-label="TOEIC" href="assets/docs/TOEIC_Rami_Boumekhita.pdf" target="_blank" rel="noopener"><span data-i18n="achievement.toeicButton">View TOEIC report</span> ↗</a>
               </div>
             </article>
           </div>
@@ -281,7 +308,7 @@
             <h3 data-i18n="recommendations.title"></h3>
             <p data-i18n="recommendations.body"></p>
           </div>
-          <a id="recommendationsLink" class="btn btn-secondary" href="https://www.linkedin.com/in/rami-boumekhita" target="_blank" rel="noopener"><span data-i18n="recommendations.cta">View recommendations on LinkedIn</span><span>↗</span></a>
+          <a id="recommendationsLink" data-analytics-event="linkedin_click" data-analytics-location="recommendations" class="btn btn-secondary" href="https://www.linkedin.com/in/rami-boumekhita" target="_blank" rel="noopener"><span data-i18n="recommendations.cta">View recommendations on LinkedIn</span><span>↗</span></a>
         </div>
       </div>
     </section>
@@ -294,11 +321,11 @@
           <p data-i18n="contact.body"></p>
 
           <div class="contact-grid">
-            <a class="contact-option" id="contactEmail" href="mailto:rami.boumekhita@gmail.com"><span class="contact-option-icon">@</span><span><small data-i18n="contact.email">Email</small><strong>rami.boumekhita@gmail.com</strong></span></a>
-            <a class="contact-option" id="contactPhone" href="tel:+33602563927"><span class="contact-option-icon">☎</span><span><small data-i18n="contact.call">Call</small><strong>+33 6 02 56 39 27</strong></span></a>
-            <a class="contact-option" id="contactWhatsapp" href="https://wa.me/33602563927" target="_blank" rel="noopener"><span class="contact-option-icon">W</span><span><small data-i18n="contact.whatsapp">WhatsApp</small><strong>+33 6 02 56 39 27</strong></span></a>
-            <a class="contact-option" id="contactLinkedin" href="https://www.linkedin.com/in/rami-boumekhita" target="_blank" rel="noopener"><span class="contact-option-icon">in</span><span><small data-i18n="contact.linkedin">LinkedIn</small><strong>/in/rami-boumekhita</strong></span></a>
-            <a class="contact-option" id="contactGithub" href="https://github.com/Rami-R/Rami-R" target="_blank" rel="noopener"><span class="contact-option-icon">GH</span><span><small data-i18n="contact.github">GitHub</small><strong>Rami-R</strong></span></a>
+            <a class="contact-option" id="contactEmail" data-analytics-event="email_click" data-analytics-location="contact" href="mailto:rami.boumekhita@gmail.com"><span class="contact-option-icon">@</span><span><small data-i18n="contact.email">Email</small><strong>rami.boumekhita@gmail.com</strong></span></a>
+            <a class="contact-option" id="contactPhone" data-analytics-event="phone_click" data-analytics-location="contact" href="tel:+33602563927"><span class="contact-option-icon">☎</span><span><small data-i18n="contact.call">Call</small><strong>+33 6 02 56 39 27</strong></span></a>
+            <a class="contact-option" id="contactWhatsapp" data-analytics-event="whatsapp_click" data-analytics-location="contact" href="https://wa.me/33602563927" target="_blank" rel="noopener"><span class="contact-option-icon">W</span><span><small data-i18n="contact.whatsapp">WhatsApp</small><strong>+33 6 02 56 39 27</strong></span></a>
+            <a class="contact-option" id="contactLinkedin" data-analytics-event="linkedin_click" data-analytics-location="contact" href="https://www.linkedin.com/in/rami-boumekhita" target="_blank" rel="noopener"><span class="contact-option-icon">in</span><span><small data-i18n="contact.linkedin">LinkedIn</small><strong>/in/rami-boumekhita</strong></span></a>
+            <a class="contact-option" id="contactGithub" data-analytics-event="github_click" data-analytics-location="contact" href="https://github.com/rami-boumekhita" target="_blank" rel="noopener"><span class="contact-option-icon">GH</span><span><small data-i18n="contact.github">GitHub</small><strong>rami-boumekhita</strong></span></a>
           </div>
         </div>
 
@@ -336,16 +363,27 @@
   </main>
 
   <aside class="floating-contact" aria-label="Persistent contact shortcuts">
-    <a id="floatEmail" href="mailto:rami.boumekhita@gmail.com" title="Email" aria-label="Email Rami">@</a>
-    <a id="floatWhatsapp" href="https://wa.me/33602563927" target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp Rami">W</a>
-    <a id="floatLinkedin" href="https://www.linkedin.com/in/rami-boumekhita" target="_blank" rel="noopener" title="LinkedIn" aria-label="Rami on LinkedIn">in</a>
-    <a id="floatGithub" href="https://github.com/Rami-R/Rami-R" target="_blank" rel="noopener" title="GitHub" aria-label="Rami on GitHub">GH</a>
+    <a id="floatEmail" data-analytics-event="email_click" data-analytics-location="floating" href="mailto:rami.boumekhita@gmail.com" title="Email" aria-label="Email Rami">@</a>
+    <a id="floatWhatsapp" data-analytics-event="whatsapp_click" data-analytics-location="floating" href="https://wa.me/33602563927" target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp Rami">W</a>
+    <a id="floatLinkedin" data-analytics-event="linkedin_click" data-analytics-location="floating" href="https://www.linkedin.com/in/rami-boumekhita" target="_blank" rel="noopener" title="LinkedIn" aria-label="Rami on LinkedIn">in</a>
+    <a id="floatGithub" data-analytics-event="github_click" data-analytics-location="floating" href="https://github.com/rami-boumekhita" target="_blank" rel="noopener" title="GitHub" aria-label="Rami on GitHub">GH</a>
   </aside>
 
   <div class="mobile-contact-bar" aria-label="Quick contact">
-    <a href="mailto:rami.boumekhita@gmail.com">Email</a>
-    <a href="tel:+33602563927">Call</a>
-    <a href="https://wa.me/33602563927" target="_blank" rel="noopener">WhatsApp</a>
+    <a data-analytics-event="email_click" data-analytics-location="mobile_bar" href="mailto:rami.boumekhita@gmail.com">Email</a>
+    <a data-analytics-event="phone_click" data-analytics-location="mobile_bar" href="tel:+33602563927">Call</a>
+    <a data-analytics-event="whatsapp_click" data-analytics-location="mobile_bar" href="https://wa.me/33602563927" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="analytics-consent" id="analyticsConsent" hidden role="dialog" aria-live="polite" aria-label="Analytics preferences">
+    <div class="analytics-consent-copy">
+      <strong>Analytics</strong>
+      <p data-i18n="analytics.message">I use analytics to understand portfolio visits and improve the site. Advertising features are disabled.</p>
+    </div>
+    <div class="analytics-consent-actions">
+      <button type="button" class="consent-btn secondary" id="analyticsDecline" data-i18n="analytics.decline">Decline</button>
+      <button type="button" class="consent-btn primary" id="analyticsAccept" data-i18n="analytics.accept">Allow analytics</button>
+    </div>
   </div>
 
   <footer>
