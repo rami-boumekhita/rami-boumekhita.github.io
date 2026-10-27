@@ -279,7 +279,7 @@ const PORTFOLIO = {
       tags: ["TIA Portal", "S7-1500", "Structured Text", "PROFINET", "PROFIsafe", "WCS/WMS", "Lenze EasyStarter", "FAT/SAT"]
     },
     {
-      period: { en: "Jun 2025 — Jan 2026", fr: "Juin 2025 — Jan. 2026" },
+      period: { en: "Jan 2025 — Feb 2026", fr: "Janvier 2025 — Février 2026" },
       role: { en: "SCADA & Process Supervision Engineer", fr: "Ingénieur SCADA & supervision de procédés" },
       company: "Verkor",
       companies: [{ name: "Verkor", url: "https://verkor.com/en/" }],
